@@ -1,3 +1,5 @@
+using System.ComponentModel.Design.Serialization;
+using System.ComponentModel;
 using System;
 using Datos;
 using Entidad;
@@ -16,47 +18,38 @@ namespace Logica
             _context = context;
         }
 
-        public GuardarInscritoResponse GuardarIsncrito (Inscrito inscrito)
+        public GuardarInscritoResponse GuardarCurso (Inscrito inscrito , int codigoCurso)
         {
             try
             {
-                var _inscrito = _context.Inscritos.Find(inscrito.Identificacion);
-                var _curso = _context.Cursos.Find(inscrito.CodigoCurso);
+                var _curso = _context.Cursos.Find(codigoCurso);
 
-                if (_curso != null)
+                DateTime fechaActual = DateTime.Today;
+                var anios = fechaActual.Year - inscrito.FechaNacimiento.Year;
+
+                if (_curso == null)
                 {
-                    return new GuardarCursoResponse("El codigo ya se encuentra registrado");                    
-                }else if(curso.CuposDisponibles <= 0){
-                    return new GuardarCursoResponse("El cupo disponible debe ser mayor que cero ");   
+                    return new GuardarInscritoResponse("El codigo no se encuentra registrado");                    
+                }else if(_curso.CuposDisponibles == 0){
+                    return new GuardarInscritoResponse("El Curso no tiene cupos disponible");   
+                }else if(anios < 12 || anios > 16){
+                    return new GuardarInscritoResponse("La edad no se encuentra entre los 12 y 16 años"); 
                 }
+
+                /*
+                _context.Cursos.Add(curso);
+                _context.SaveChanges();
+                return new GuardarInscritoResponse(curso);*/
             }
             catch (Exception e)
             {
-                return new GuardarCursoResponse("Ocurrieron algunos Errores:" + e.Message);   
+                return new GuardarInscritoResponse("Ocurrieron algunos Errores:" + e.Message);   
             }
         }
 
+
     }
 
-    public class ConsultarInscritoResponse
-    {
-        public List<Inscrito> Inscritos { get; set; }
-        public string Mensaje { get; set; }
-        public bool Error { get; set; }
-
-
-        public ConsultarInscritoResponse(List<Inscrito> inscritos)
-        {
-            Inscritos = inscritos;
-            Error = false;
-        }
-
-        public ConsultarInscritoResponse(string mensaje)
-        {
-            Mensaje = mensaje;
-            Error = true;
-        }
-    }
     public class GuardarInscritoResponse
     {
         public Inscrito Inscrito { get; set; }
@@ -76,5 +69,7 @@ namespace Logica
             Error = true;
         }
     }
+
+
 
 }

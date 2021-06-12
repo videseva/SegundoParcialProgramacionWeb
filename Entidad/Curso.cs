@@ -12,7 +12,7 @@ namespace Entidad
         public int CodigoCurso { get; set; }
         public string Nombre { get; set; }
         public int CuposDisponibles { get; set; }
-        public List<Inscrito> Inscritos{ get; set;}
+        public List<CursoInscrito> CursoInscritos{ get; set;}
 
     }
 }
