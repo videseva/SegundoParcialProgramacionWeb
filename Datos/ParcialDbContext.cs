@@ -11,5 +11,6 @@ namespace Datos
         }
         public DbSet<Curso> Cursos { get; set; }
         public DbSet<Inscrito> Inscritos { get; set; }
+        public DbSet<CursoInscrito> CursoInscritos { get; set; }
     }
 }

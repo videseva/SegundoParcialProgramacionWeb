@@ -23,9 +23,10 @@ namespace Logica
             try
             {
                 var _curso = _context.Cursos.Find(codigoCurso);
-
+                var _cursosInscritos = _context.CursoInscritos.Count(p => p.Identificacion == inscrito.Identificacion);
                 DateTime fechaActual = DateTime.Today;
                 var anios = fechaActual.Year - inscrito.FechaNacimiento.Year;
+                
 
                 if (_curso == null)
                 {
@@ -34,12 +35,24 @@ namespace Logica
                     return new GuardarInscritoResponse("El Curso no tiene cupos disponible");   
                 }else if(anios < 12 || anios > 16){
                     return new GuardarInscritoResponse("La edad no se encuentra entre los 12 y 16 años"); 
+                }else if(_cursosInscritos == 2){
+                    return new GuardarInscritoResponse("Ya se encuentra registrado en dos cursos");
                 }
 
-                /*
-                _context.Cursos.Add(curso);
+                _curso.CuposDisponibles =  _curso.CuposDisponibles - 1;
+                _context.Cursos.Update(_curso);
+                 _context.SaveChanges();
+
+                _context.Inscritos.Add(inscrito);
                 _context.SaveChanges();
-                return new GuardarInscritoResponse(curso);*/
+
+                CursoInscrito cursoInscrito = new CursoInscrito();
+                cursoInscrito.CodigoCurso = codigoCurso;
+                cursoInscrito.Identificacion = inscrito.Identificacion;
+
+                _context.CursoInscritos.Add(cursoInscrito);
+                _context.SaveChanges();
+                return new GuardarInscritoResponse(inscrito);
             }
             catch (Exception e)
             {

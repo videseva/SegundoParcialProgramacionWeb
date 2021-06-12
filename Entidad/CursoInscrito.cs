@@ -9,7 +9,8 @@ namespace Entidad
     public class CursoInscrito
     {
         [Key]
-        public int CodigoCursoInscrito { get; set; }
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int IdCursoInscrito { get; set; }
 
         [ForeignKey("Curso")]
         public int CodigoCurso { get; set; }

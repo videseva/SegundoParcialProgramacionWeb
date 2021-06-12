@@ -36,7 +36,7 @@ namespace Datos.Migrations
 
             modelBuilder.Entity("Entidad.CursoInscrito", b =>
                 {
-                    b.Property<int>("CodigoCursoInscrito")
+                    b.Property<int>("IdCursoInscrito")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
@@ -46,13 +46,13 @@ namespace Datos.Migrations
                     b.Property<string>("Identificacion")
                         .HasColumnType("varchar(767)");
 
-                    b.HasKey("CodigoCursoInscrito");
+                    b.HasKey("IdCursoInscrito");
 
                     b.HasIndex("CodigoCurso");
 
                     b.HasIndex("Identificacion");
 
-                    b.ToTable("CursoInscrito");
+                    b.ToTable("CursoInscritos");
                 });
 
             modelBuilder.Entity("Entidad.Inscrito", b =>
