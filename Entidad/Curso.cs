@@ -5,11 +5,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Entidad
 {
-    public class Persona
+    public class Curso
     {
         [Key]
-        public string Identificacion { get; set; }
+        public int codigo { get; set; }
         public string Nombre { get; set; }
+        public int CuposDisponibles { get; set; }
 
     }
 }

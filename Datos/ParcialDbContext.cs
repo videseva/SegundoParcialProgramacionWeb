@@ -8,8 +8,7 @@ namespace Datos
     {
         public ParcialDbContext(DbContextOptions options) : base(options)
         {
-          
         }
-          public DbSet<Persona> Personas { get; set; }
+          public DbSet<Curso> Cursos { get; set; }
     }
 }
