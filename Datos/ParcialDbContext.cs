@@ -9,6 +9,7 @@ namespace Datos
         public ParcialDbContext(DbContextOptions options) : base(options)
         {
         }
-          public DbSet<Curso> Cursos { get; set; }
+        public DbSet<Curso> Cursos { get; set; }
+        public DbSet<Inscrito> Inscritos { get; set; }
     }
 }
