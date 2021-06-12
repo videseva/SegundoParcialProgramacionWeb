@@ -51,18 +51,6 @@ namespace Logica
             }
         }
 
-        public ConsultarCursoResponse ConsultarCursosConInscritos()
-        {
-            try
-            {
-                var Cursos = _context.Cursos.Include(x => x.CursoInscritos).Include(a => a.Inscrito).ToList();
-                return new ConsultarCursoResponse(Cursos);
-            }
-            catch (Exception e)
-            {
-                return new ConsultarCursoResponse("Ocurriern algunos Errores:" + e.Message);
-            }
-        }
     }
 
     public class ConsultarCursoResponse
