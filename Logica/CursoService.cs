@@ -42,7 +42,20 @@ namespace Logica
         {
             try
             {
-                var Cursos = _context.Cursos.ToList();
+                var Cursos = _context.CursoInscritos.Include(x => x.Curso).Include(a => a.Inscrito).ToList();
+                return new ConsultarCursoResponse(Cursos);
+            }
+            catch (Exception e)
+            {
+                return new ConsultarCursoResponse("Ocurriern algunos Errores:" + e.Message);
+            }
+        }
+
+        public ConsultarCursoResponse ConsultarCursosConInscritos()
+        {
+            try
+            {
+                var Cursos = _context.Cursos.Include(x => x.CursoInscritos).Include(a => a.Inscrito).ToList();
                 return new ConsultarCursoResponse(Cursos);
             }
             catch (Exception e)
@@ -54,14 +67,14 @@ namespace Logica
 
     public class ConsultarCursoResponse
     {
-        public List<Curso> Cursos { get; set; }
+        public List<CursoInscrito> CursoInscritos { get; set; }
         public string Mensaje { get; set; }
         public bool Error { get; set; }
 
 
-        public ConsultarCursoResponse(List<Curso> cursos)
+        public ConsultarCursoResponse(List<CursoInscrito> cursos)
         {
-            Cursos = cursos;
+            CursoInscritos = cursos;
             Error = false;
         }
 

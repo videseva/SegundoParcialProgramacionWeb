@@ -8,8 +8,9 @@ using Logica;
 using Datos;
 using Entidad;
 using CursoModel.Model;
+using CursoInscritoModel.Model;
 
- namespace Presentacion.controller 
+namespace Presentacion.controller 
     {
         [Route("api/[controller]")]
         [ApiController]
@@ -38,13 +39,13 @@ using CursoModel.Model;
             }
 
             [HttpGet]
-            public ActionResult<IEnumerable<CursoViewModel>>GetCursos()
+            public ActionResult<IEnumerable<CursoInscritoViewModel>>GetCursos()
             {
                   var response = _cursoService.Consultar();
                 if (!response.Error)
                 {
-                    var cursoViewModel = response.Cursos.Select(p => new CursoViewModel(p));
-                    return Ok(cursoViewModel);
+                    var cursoInscritoViewModel = response.CursoInscritos.Select(p => new CursoInscritoViewModel(p));
+                    return Ok(cursoInscritoViewModel);
                 }
                 return BadRequest(response.Mensaje);
             }

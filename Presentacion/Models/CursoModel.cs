@@ -4,6 +4,7 @@ using System.Linq;
 using System;
 using Entidad;
 using System.Collections.Generic;
+using InscritoModel.Model;
 
 namespace CursoModel.Model
 {
@@ -21,5 +22,7 @@ namespace CursoModel.Model
             Nombre = curso.Nombre;
             CuposDisponibles = curso.CuposDisponibles;
         }
+
+        
     }
 }
