@@ -22,13 +22,15 @@ namespace Logica
             {
                 var _curso = _context.Cursos.Find(curso.CodigoCurso);
 
-                if (_curso == null)
+                if (_curso != null)
                 {
-                    _context.Cursos.Add(curso);
-                    _context.SaveChanges();
-                    return new GuardarCursoResponse(curso);
+                    return new GuardarCursoResponse("El codigo ya se encuentra registrado");                    
+                }else if(curso.CuposDisponibles <= 0){
+                    return new GuardarCursoResponse("El cupo disponible debe ser mayor que cero ");   
                 }
-                 return new GuardarCursoResponse("El curso ya se encuentra registrado");
+                _context.Cursos.Add(curso);
+                _context.SaveChanges();
+                return new GuardarCursoResponse(curso);
             }
             catch (Exception e)
             {
@@ -48,8 +50,6 @@ namespace Logica
                 return new ConsultarCursoResponse("Ocurriern algunos Errores:" + e.Message);
             }
         }
-
-
     }
 
     public class ConsultarCursoResponse
@@ -72,23 +72,23 @@ namespace Logica
         }
     }
     public class GuardarCursoResponse
+    {
+        public Curso Curso { get; set; }
+        public string Mensaje { get; set; }
+        public bool Error { get; set; }
+
+
+        public GuardarCursoResponse(Curso curso)
         {
-            public Curso Curso { get; set; }
-            public string Mensaje { get; set; }
-            public bool Error { get; set; }
-
-
-            public GuardarCursoResponse(Curso curso)
-            {
-                Curso = curso;
-                Error = false;
-            }
-
-            public GuardarCursoResponse(string mensaje)
-            {
-                Mensaje = mensaje;
-                Error = true;
-            }
+            Curso = curso;
+            Error = false;
         }
+
+        public GuardarCursoResponse(string mensaje)
+        {
+            Mensaje = mensaje;
+            Error = true;
+        }
+    }
 
 }

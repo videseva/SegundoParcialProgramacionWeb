@@ -24,7 +24,7 @@ using CursoModel.Model;
             }
 
             [HttpPost]
-            public ActionResult <CursoModel> PostCurso(CursoInputModel cursoInputModel)
+            public ActionResult <CursoViewModel> PostCurso(CursoInputModel cursoInputModel)
             {   
                 var curso = MapearCurso(cursoInputModel);
                 var response = _cursoService.GuardarCurso(curso);
@@ -32,6 +32,18 @@ using CursoModel.Model;
                 if (!response.Error)
                 {
                     var cursoViewModel = new CursoViewModel(curso);
+                    return Ok(cursoViewModel);
+                }
+                return BadRequest(response.Mensaje);
+            }
+
+            [HttpGet]
+            public ActionResult<IEnumerable<CursoViewModel>>GetCursos()
+            {
+                  var response = _cursoService.Consultar();
+                if (!response.Error)
+                {
+                    var cursoViewModel = response.Cursos.Select(p => new CursoViewModel(p));
                     return Ok(cursoViewModel);
                 }
                 return BadRequest(response.Mensaje);
