@@ -6,6 +6,10 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
+using Datos;
+using Microsoft.EntityFrameworkCore;
+using MySQL.Data.EntityFrameworkCore;
+
 namespace Presentacion
 {
     public class Startup
@@ -19,7 +23,12 @@ namespace Presentacion
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
-        {
+        {   
+            //Configuracion de la  Cadena de conexion.
+            var connectionString = Configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContext<ParcialDbContext>(p=>p.UseMySQL(connectionString));
+
+
             services.AddControllersWithViews();
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
