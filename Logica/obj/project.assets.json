@@ -1,0 +1,110 @@
+{
+  "version": 3,
+  "targets": {
+    "net5.0": {
+      "Datos/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "dependencies": {
+          "Entidad": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Datos.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Datos.dll": {}
+        }
+      },
+      "Entidad/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "compile": {
+          "bin/placeholder/Entidad.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Entidad.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Datos/1.0.0": {
+      "type": "project",
+      "path": "../Datos/Datos.csproj",
+      "msbuildProject": "../Datos/Datos.csproj"
+    },
+    "Entidad/1.0.0": {
+      "type": "project",
+      "path": "../Entidad/Entidad.csproj",
+      "msbuildProject": "../Entidad/Entidad.csproj"
+    }
+  },
+  "projectFileDependencyGroups": {
+    "net5.0": [
+      "Datos >= 1.0.0",
+      "Entidad >= 1.0.0"
+    ]
+  },
+  "packageFolders": {
+    "C:\\Users\\User\\.nuget\\packages\\": {}
+  },
+  "project": {
+    "version": "1.0.0",
+    "restore": {
+      "projectUniqueName": "C:\\Users\\User\\Documents\\SegundoParcialProgramacionWeb\\Logica\\Logica.csproj",
+      "projectName": "Logica",
+      "projectPath": "C:\\Users\\User\\Documents\\SegundoParcialProgramacionWeb\\Logica\\Logica.csproj",
+      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\User\\Documents\\SegundoParcialProgramacionWeb\\Logica\\obj\\",
+      "projectStyle": "PackageReference",
+      "configFilePaths": [
+        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config"
+      ],
+      "originalTargetFrameworks": [
+        "net5.0"
+      ],
+      "sources": {
+        "https://api.nuget.org/v3/index.json": {}
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "projectReferences": {
+            "C:\\Users\\User\\Documents\\SegundoParcialProgramacionWeb\\Datos\\Datos.csproj": {
+              "projectPath": "C:\\Users\\User\\Documents\\SegundoParcialProgramacionWeb\\Datos\\Datos.csproj"
+            },
+            "C:\\Users\\User\\Documents\\SegundoParcialProgramacionWeb\\Entidad\\Entidad.csproj": {
+              "projectPath": "C:\\Users\\User\\Documents\\SegundoParcialProgramacionWeb\\Entidad\\Entidad.csproj"
+            }
+          }
+        }
+      },
+      "warningProperties": {
+        "warnAsError": [
+          "NU1605"
+        ]
+      }
+    },
+    "frameworks": {
+      "net5.0": {
+        "targetAlias": "net5.0",
+        "imports": [
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48"
+        ],
+        "assetTargetFallback": true,
+        "warn": true,
+        "frameworkReferences": {
+          "Microsoft.NETCore.App": {
+            "privateAssets": "all"
+          }
+        },
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.202\\RuntimeIdentifierGraph.json"
+      }
+    }
+  }
+}
